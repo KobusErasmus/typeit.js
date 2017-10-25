@@ -8,8 +8,10 @@ advanced (and perhaps overly complicated), see Matt Boldt's Typed.js
 Using Typeit.js requires only two steps.
 
 ## Step 1
-First, download the typeit.js file and include it at the bottom of your HTML
-body tag. For example:
+
+First, download the typeit.js file
+(https://raw.githubusercontent.com/KobusErasmus/typeit.js/master/typeit.js) and
+include it at the bottom of your HTML body tag. For example:
 ```
 <!DOCTYPE html>
 <html>
