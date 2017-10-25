@@ -23,6 +23,7 @@ body tag. For example:
 </html>
 ```
 
+## Step 2
 Then, second, give any elements that should be typed out the class "typeit".
 For example:
 ```
