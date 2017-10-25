@@ -9,7 +9,7 @@ function typeElementStrings(index, elements) {
   if (elements == null || index <= 0 || index > elements.length) return;
   var nextIndex = elements.length - index;
   typeNextElementString(nextIndex, elements);
-  typeElementStrings(index - 1);
+  typeElementStrings(index - 1, elements);
 }
 
 function typeNextElementString(nextIndex, elements) {
