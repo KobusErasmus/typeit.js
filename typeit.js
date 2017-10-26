@@ -14,7 +14,7 @@ function typeElementStrings(index, elements) {
 
 function typeNextElementString(nextIndex, elements) {
   var element = elements[nextIndex];
-  var elementString = element.innerHTML;
+  var elementString = element.textContent;
   element.innerHTML = "";
   if (elementString == null || elementString == "") return;
   typeNextElementCharacter(element, elementString, elementString.length);
