@@ -1,53 +1,47 @@
 var typingSpeed = 70, blinkingSpeed = 400;
+var elements = document.getElementsByClassName("typeit");
 
-function typeit() {
-  var elements = document.getElementsByClassName("typeit");
-  typeElementStrings(elements.length, elements);
-}
+typeElement(0);
 
-function typeElementStrings(index, elements) {
-  if (elements == null || index <= 0 || index > elements.length) return;
-  var nextIndex = elements.length - index;
-  typeNextElementString(nextIndex, elements);
-  typeElementStrings(index - 1, elements);
-}
-
-function typeNextElementString(nextIndex, elements) {
-  var element = elements[nextIndex];
+function typeElement(index) {
+  if (elements == null || index >= elements.length) return;
+  var element = elements[index];
   var elementString = element.textContent;
   element.innerHTML = "";
-  if (elementString == null || elementString == "") return;
-  typeNextElementCharacter(element, elementString, elementString.length);
+  typeStringInside(element, elementString);
+  typeElement(index + 1);
 }
 
-function typeNextElementCharacter(element, elementString, index) {
-  if (index <= 0 || index > elementString.length) {
-    renderBlinkingPipeForElement(element);
+function typeStringInside(element, elementString) {
+  if (elementString == null || elementString == "") return;
+  typeCharacterInsideElement(0, element, elementString);
+}
+
+function typeCharacterInsideElement(index, element, elementString) {
+  if (index >= elementString.length) {
+    typeBlinkingPipe(element);
     return;
   }
-  var nextIndex = elementString.length - index;
-  var newElementString = element.innerHTML + elementString[nextIndex];
+  var character = elementString[index];
   setTimeout(function() {
-    element.innerHTML = newElementString;
-    typeNextElementCharacter(element, elementString, index - 1);
-  }, typingSpeed);
+      element.innerHTML = element.innerHTML + character;
+      typeCharacterInsideElement(index + 1, element, elementString); },
+    typingSpeed);
 }
 
-function renderBlinkingPipeForElement(element) {
+function typeBlinkingPipe(element) {
   var newElementString = element.innerHTML +
     "<span class=\"blinking\" style=\"visibility: visible;\">|</span>";
   setTimeout(function() {
     element.innerHTML = newElementString;
-    blinkPipeInElement(element);
+    var blinkingElement = element.getElementsByClassName("blinking")[0];
+    startBlinkingElement(blinkingElement);
   }, typingSpeed);
 }
 
-function blinkPipeInElement(element) {
-  var blinkingElement = element.getElementsByClassName("blinking")[0];
+function startBlinkingElement(element) {
   setInterval(function() {
-    var visibility = blinkingElement.style.visibility;
-    blinkingElement.style.visibility = (visibility == "hidden" ? "visible" : "hidden");
+    var visibility = element.style.visibility;
+    element.style.visibility = (visibility == "hidden" ? "visible" : "hidden");
   }, blinkingSpeed);
 }
-
-typeit();

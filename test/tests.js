@@ -5,7 +5,8 @@ QUnit.module( "typeit.js tests", {
     var div2 = "<div class='typeit' id='div2'>D E</div>";
     var divHtml = div1 + div2;
     fixtureDiv.innerHTML = divHtml;
-    typeit();
+    var elements = document.getElementsByClassName("typeit");
+    typeElement(0);
   },
   afterEach: function() {
     var fixtureDiv = document.getElementById("qunit-fixture");
